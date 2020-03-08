@@ -20,7 +20,7 @@ public class QRCodeGenerator {
         QRCodeWriter qrWriter = new QRCodeWriter();
         BitMatrix bitMat = qrWriter.encode(text, BarcodeFormat.QR_CODE, width, height);
 
-        Path path = FileSystems.getDefault().getPath(filePath); //TODO change minSDK to 26
+        Path path = FileSystems.getDefault().getPath(filePath);
         MatrixToImageWriter.writeToPath(bitMat, "PNG", path);
     }
 
