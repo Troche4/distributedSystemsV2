@@ -1,5 +1,6 @@
 package com.example.distributedsystemsphase2.QuoteServer;
 
+import java.util.*;
 import java.io.*;
 import java.net.*;
 import java.util.Date;
@@ -20,13 +21,13 @@ public class QuoteServer {
         private DatagramSocket socket;
         private BufferedReader in;
         private boolean hasQuotes = true;
-        private int port = 60000;
+        private int port = 6000;
 
         public QuoteServerThread() throws IOException {
             super("QuoteServerThread");
             socket = new DatagramSocket(port);
             try {
-                in = new BufferedReader(new InputStreamReader(new FileInputStream("one-liners.txt")));
+                in = new BufferedReader(new InputStreamReader(new FileInputStream("data.txt")));
             } catch (FileNotFoundException e) {
                 System.err.println("Could not open quote file. Serving time instead.");
             }
