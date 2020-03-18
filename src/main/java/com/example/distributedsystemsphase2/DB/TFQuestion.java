@@ -4,7 +4,10 @@ import androidx.room.*;
 import java.util.*;
 
 @Entity(tableName = "TF_QUESTION")
-public class TFQuestion {
+public class TFQuestion extends Question{
+
+    @ColumnInfo(name = "quizID")
+    public int quizID;
 
     @ColumnInfo(name = "prompt")
     public String prompt;

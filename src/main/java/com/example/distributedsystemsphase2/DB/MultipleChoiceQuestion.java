@@ -4,7 +4,10 @@ import androidx.room.*;
 import java.util.*;
 
 @Entity(tableName = "MULTIPLE_CHOICE_QUESTION")
-public class MultipleChoiceQuestion {
+public class MultipleChoiceQuestion extends Question{
+
+    @ColumnInfo(name = "quizID")
+    public int quizID;
 
     @ColumnInfo(name = "prompt")
     public String prompt;

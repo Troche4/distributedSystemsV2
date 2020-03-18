@@ -4,7 +4,10 @@ import androidx.room.*;
 import java.util.*;
 
 @Entity(tableName = "MATCHING_QUESTION")
-public class MatchingQuestion {
+public class MatchingQuestion extends Question{
+
+    @ColumnInfo(name = "quizID")
+    public int quizID;
 
     @ColumnInfo(name = "prompt")
     public String prompt;

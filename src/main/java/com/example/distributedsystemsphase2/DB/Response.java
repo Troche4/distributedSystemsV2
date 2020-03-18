@@ -21,4 +21,7 @@ public class Response {
 
     @ColumnInfo(name = "time_sent")
     public Date time_sent;
+
+    @ColumnInfo(name = "answers")
+    public ArrayList<String> answers;
 }
