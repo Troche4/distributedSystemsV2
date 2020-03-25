@@ -16,7 +16,6 @@ import androidx.room.*;
 public abstract class AppDatabase extends RoomDatabase {
         public abstract InstructorDao instructorDao();
         public abstract StudentDao studentDao();
-        //TODO add all queries for Daos
 }
 
 

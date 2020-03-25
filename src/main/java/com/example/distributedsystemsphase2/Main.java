@@ -1,6 +1,10 @@
 package com.example.distributedsystemsphase2;
 
+import androidx.room.*;
+import android.app.*;
+import android.content.*;
 import io.javalin.Javalin;
+import com.example.distributedsystemsphase2.DB.*;
 
 public class Main {
 
@@ -21,7 +25,23 @@ public class Main {
             ctx.status(201);
         });
 
-        app.get("/join/add", ctx ->{
+        app.get("/join/addStudent", ctx ->{
+            ctx.status(201);
+        });
+
+        app.get("/join/takeQuiz", ctx ->{
+            ctx.status(201);
+        });
+
+        app.get("/start/quizzes", ctx ->{
+            ctx.status(201);
+        });
+
+        app.get("/start/showCode", ctx ->{
+            ctx.status(201);
+        });
+
+        app.get("/join/showQuestions", ctx ->{
             ctx.status(201);
         });
     }
