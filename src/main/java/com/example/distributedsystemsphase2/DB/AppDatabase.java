@@ -13,6 +13,7 @@ import androidx.room.*;
             TFQuestion.class,
             ShortAnswerQuestion.class
     }, version = 1)
+@TypeConverters({Converters.class})
 public abstract class AppDatabase extends RoomDatabase {
         public abstract InstructorDao instructorDao();
         public abstract StudentDao studentDao();

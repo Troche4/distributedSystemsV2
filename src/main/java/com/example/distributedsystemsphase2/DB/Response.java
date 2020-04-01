@@ -1,16 +1,18 @@
 package com.example.distributedsystemsphase2.DB;
 
 import androidx.room.*;
+import org.jetbrains.annotations.NotNull;
 import java.util.*;
 
 @Entity(tableName = "RESPONSE")
 public class Response {
 
     @PrimaryKey
+    @NotNull
     @ColumnInfo(name = "responseID")
     public int responseID;
 
-    @ColumnInfo(name = "quizID")
+    @ColumnInfo(name = "questionID")
     public int quizID;
 
     @ColumnInfo(name = "first_name")
@@ -20,7 +22,7 @@ public class Response {
     public String lastName;
 
     @ColumnInfo(name = "time_sent")
-    public Date time_sent;
+    public String time_sent;
 
     @ColumnInfo(name = "answers")
     public ArrayList<String> answers;

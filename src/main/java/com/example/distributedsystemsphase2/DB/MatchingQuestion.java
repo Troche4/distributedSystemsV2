@@ -1,10 +1,18 @@
 package com.example.distributedsystemsphase2.DB;
 
 import androidx.room.*;
+
+import org.jetbrains.annotations.NotNull;
+
 import java.util.*;
 
 @Entity(tableName = "MATCHING_QUESTION")
 public class MatchingQuestion extends Question{
+
+    @PrimaryKey
+    @NotNull
+    @ColumnInfo(name = "questionID")
+    public int questionID;
 
     @ColumnInfo(name = "quizID")
     public int quizID;

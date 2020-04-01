@@ -1,12 +1,15 @@
 package com.example.distributedsystemsphase2.DB;
 
 import androidx.room.*;
+import org.jetbrains.annotations.NotNull;
+
 import java.util.*;
 
 @Entity(tableName = "QUIZ")
 public class Quiz {
 
     @PrimaryKey
+    @NotNull
     @ColumnInfo(name = "quizID")
     public int quizID;
 
