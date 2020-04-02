@@ -24,6 +24,6 @@ public class Response {
     @ColumnInfo(name = "time_sent")
     public String time_sent;
 
-    @ColumnInfo(name = "answers")
-    public ArrayList<String> answers;
+    @ColumnInfo(name = "answer")
+    public String answer;
 }

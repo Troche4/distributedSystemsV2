@@ -8,11 +8,7 @@ import androidx.room.*;
             Quiz.class,
             Instructor.class,
             MultipleChoiceQuestion.class,
-            MatchingQuestion.class,
-            FillInBlankQuestion.class,
-            TFQuestion.class,
-            ShortAnswerQuestion.class
-    }, version = 1)
+    }, version = 1, exportSchema = true)
 @TypeConverters({Converters.class})
 public abstract class AppDatabase extends RoomDatabase {
         public abstract InstructorDao instructorDao();

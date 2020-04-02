@@ -12,11 +12,8 @@ public interface InstructorDao {
     @Query("SELECT QUIZ.* FROM INSTRUCTOR, QUIZ WHERE QUIZ.instructorID = INSTRUCTOR.email AND INSTRUCTOR.email = :email")
     List<Quiz> getQuizzesByInstructorEmail(String email);
 
-    @Query("SELECT * FROM ")
-    List getQuestionsByQuizTitle(String title);
-
-    @Query("SELECT RESPONSE.* FROM QUIZ, RESPONSE WHERE RESPONSE.quizID = QUIZ.quizID AND QUIZ.title = :title")
-    List<Response> getResponsesByQuizTitle(String title);
+    @Query("SELECT * FROM  MULTIPLE_CHOICE_QUESTION, QUIZ WHERE QUIZ.title = :title AND (MULTIPLE_CHOICE_QUESTION.quizID = QUIZ.quizID)")
+    List<MultipleChoiceQuestion> getQuestionsByQuizTitle(String title);
 
     @Insert
     void addInstructor(Instructor i);
