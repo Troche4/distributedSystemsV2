@@ -5,35 +5,39 @@ import java.net.*;
 
 public class QuoteServerClient {
 
-    //Author: Trey Roche
-    //Source: Lecture notes
+    private DatagramSocket socket;
+    private InetAddress address;
+    private byte[] buf;
 
-    public static void main(String[] args) throws IOException {
-
-        if (args.length != 1) {
-            System.out.println("Usage: java QuoteClient <hostname>");
-            return;
+    public QuoteServerClient() {
+        try{
+            socket = new DatagramSocket();
+            address = InetAddress.getByName("localhost");
         }
-
-        // get a datagram socket
-        DatagramSocket socket = new DatagramSocket();
-
-        // send request
-        byte[] buf = new byte[256];
-        InetAddress address = InetAddress.getByName(args[0]);
-        DatagramPacket packet = new DatagramPacket(buf, buf.length, address, 6000);
-        socket.send(packet);
-
-        // get response
-        packet = new DatagramPacket(buf, buf.length);
-        socket.receive(packet);
-
-
-        // display response
-        String received = new String(packet.getData(), 0, packet.getLength());
-        System.out.println("Quote of the Moment: " + received);
-
-        socket.close();
+        catch(Exception e){
+            System.out.println(e);
+        }
     }
 
+    public String sendMessage(String msg) {
+        String received = new String();
+        try{
+            buf = msg.getBytes();
+            DatagramPacket packet
+                    = new DatagramPacket(buf, buf.length, address, 4445);
+            socket.send(packet);
+            packet = new DatagramPacket(buf, buf.length);
+            socket.receive(packet);
+            received = new String(
+                    packet.getData(), 0, packet.getLength());
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+        return received;
+    }
+
+    public void close() {
+        socket.close();
+    }
 }
