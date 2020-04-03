@@ -15,6 +15,9 @@ public class HostQuiz extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_host_quiz);
+
         loadButton = (Button) findViewById(R.id.loadButton);
         loadButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -22,16 +25,13 @@ public class HostQuiz extends AppCompatActivity {
                 openLoadActivity();
             }
         });
-        makeButton = (Button) findViewById(R.id.joinButton);
+        makeButton = (Button) findViewById(R.id.makeButton);
         makeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openMakeActivity();
             }
         });
-        super.onCreate(savedInstanceState);
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_host_quiz);
     }
 
     public void openLoadActivity() {

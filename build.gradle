@@ -4,7 +4,7 @@ android {
     compileSdkVersion 'android-Q'
     defaultConfig {
         applicationId "com.example.distributedsystemsphase2"
-        minSdkVersion 26
+        minSdkVersion 27
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
