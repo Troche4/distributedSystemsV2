@@ -2,10 +2,23 @@ package com.example.distributedsystemsphase2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
 
 public class HostQuiz extends AppCompatActivity {
 
@@ -32,7 +45,42 @@ public class HostQuiz extends AppCompatActivity {
                 openMakeActivity();
             }
         });
+        new SendHelloTask().execute();
     }
+
+        private class SendHelloTask extends AsyncTask<Void, Void, Void> {
+
+            String result;
+
+            @Override
+            protected Void doInBackground(Void... voids){
+                try {
+                    DatagramSocket socket = new DatagramSocket(4445);
+                    byte[] buf = new byte[256];
+                    result = "Hello from the server!";
+                    buf = result.getBytes();
+                    DatagramPacket toSend = new DatagramPacket(buf, buf.length, InetAddress.getLocalHost(), 4445);
+                    socket.send(toSend);
+                } catch(Exception e) {
+                    StringWriter sw = new StringWriter();
+                    e.printStackTrace(new PrintWriter(sw));
+                    String exceptionAsString = sw.toString();
+                    result = exceptionAsString;
+                }
+                return null;
+            }
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
+                    }
+                });
+                super.onPostExecute(aVoid);
+            }
+        }
+
 
     public void openLoadActivity() {
         Intent intent = new Intent(this, LoadQuiz.class);
