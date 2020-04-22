@@ -32,25 +32,24 @@ public class JoinQuiz extends AppCompatActivity {
 
     private class GetHelloTask extends AsyncTask<Void, Void, Void> {
 
-        String result = "Loading...";
+        String result = "quiz_id:123456789";
 
         @Override
-        protected Void doInBackground(Void... voids) {
+        protected Void doInBackground(Void... voids){
             try {
-                DatagramSocket socket = new DatagramSocket(4445);
+                DatagramSocket socket = new DatagramSocket(6000);
                 byte[] buf = new byte[256];
-                DatagramPacket received = new DatagramPacket(buf, buf.length);
-                socket.receive(received);
-                result = received.getData().toString();
-                socket.close();
-            } catch (Exception e) {
+                buf = result.getBytes();
+                DatagramPacket toSend  = new DatagramPacket(buf, buf.length, InetAddress.getByName("10.0.2.2"), 6060);
+                socket.send(toSend);
+            } catch(Exception e) {
                 StringWriter sw = new StringWriter();
                 e.printStackTrace(new PrintWriter(sw));
-                result = sw.toString();
+                String exceptionAsString = sw.toString();
+                result = exceptionAsString;
             }
             return null;
         }
-
         @Override
         protected void onPostExecute(Void aVoid) {
             new Handler(Looper.getMainLooper()).post(new Runnable() {
@@ -59,8 +58,6 @@ public class JoinQuiz extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
                 }
             });
-            TextView textView = (TextView) findViewById(R.id.out);
-            textView.setText(result);
             super.onPostExecute(aVoid);
         }
     }

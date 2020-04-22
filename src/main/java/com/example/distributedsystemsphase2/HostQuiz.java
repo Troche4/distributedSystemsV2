@@ -19,6 +19,7 @@ import java.io.StringWriter;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.net.SocketException;
 
 public class HostQuiz extends AppCompatActivity {
 
@@ -50,17 +51,31 @@ public class HostQuiz extends AppCompatActivity {
 
         private class SendHelloTask extends AsyncTask<Void, Void, Void> {
 
-            String result;
+            String result = "nothing to report";
 
             @Override
             protected Void doInBackground(Void... voids){
+
+                DatagramSocket socket = null;
                 try {
-                    DatagramSocket socket = new DatagramSocket(4445);
-                    byte[] buf = new byte[256];
-                    result = "Hello from the server!";
-                    buf = result.getBytes();
-                    DatagramPacket toSend = new DatagramPacket(buf, buf.length, InetAddress.getLocalHost(), 4445);
-                    socket.send(toSend);
+                    socket = new DatagramSocket(6000);
+                } catch (SocketException e) {
+                    e.printStackTrace();
+                }
+                byte[] buf = new byte[256];
+
+                try {
+                    while(true){
+                        DatagramPacket packet = new DatagramPacket(buf, buf.length, InetAddress.getByName("10.0.2.15"), 6000);
+                        socket.receive(packet);
+                        result = new String(packet.getData(), 0, packet.getLength());
+                        packet = new DatagramPacket(buf, buf.length, InetAddress.getByName("10.0.2.15"), 6000);
+                        if(result.equals("quiz_id:123456789")){
+                            socket.close();
+                            return null;
+                        }
+                        socket.send(packet);
+                    }
                 } catch(Exception e) {
                     StringWriter sw = new StringWriter();
                     e.printStackTrace(new PrintWriter(sw));
