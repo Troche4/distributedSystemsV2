@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:background="@drawable/blackgrad"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="1"
+            android:rowCount="2"
+            android:alignmentMode="alignMargins"
+            android:columnOrderPreserved="false"
+            android:paddingTop="40dp">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/student"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_gravity="center"
+            app:cardCornerRadius="15dp"
+            app:cardBackgroundColor="#FFFFFF"
+            app:cardElevation="6dp"
+            android:layout_margin="12dp"
+                android:clickable="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:padding="16dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="240dp"
+                    android:layout_height="240dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/student" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Student"
+                    android:textSize="20sp"
+                    android:fontFamily="sans-serif-black"
+                    android:layout_marginTop="12dp"/>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/teacher"
+                android:onClick="onClick"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_gravity="center"
+                app:cardCornerRadius="15dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardElevation="6dp"
+                android:layout_margin="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:padding="16dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="240dp"
+                        android:layout_height="240dp"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@drawable/teacher" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Teacher"
+                        android:textSize="20sp"
+                        android:fontFamily="sans-serif-black"
+                        android:layout_marginTop="12dp"/>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+
+        </GridLayout>
+
+    </LinearLayout>
+
+
+</ScrollView>

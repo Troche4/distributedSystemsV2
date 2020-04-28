@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Team MacOS</string>
+
+    <string-array name="choices">
+        <item>Multiple Choice</item>
+        <item>Matching</item>
+        <item>Fill in the blank</item>
+    </string-array>
+</resources>
